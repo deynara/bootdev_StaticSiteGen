@@ -1,5 +1,5 @@
 from textnode import TextNode, TextType
-from htmlnode import HTMLNode
+from htmlnode import *
 
 def main():
     print("Starting main.py")
@@ -13,7 +13,19 @@ def main():
             })
     
     test_method = test.props_to_html()
-    print (test_method)
+    leaf = LeafNode("p", "This is a paragraph of text.")
+    parent = ParentNode(
+    "p",
+    [
+        LeafNode("b", "Bold text"),
+        LeafNode(None, "Normal text"),
+        LeafNode("i", "italic text"),
+        LeafNode(None, "Normal text"),
+    ],
+    )
+
+    print (parent)
+    print(parent.to_html())
 
 if __name__ == "__main__":
     main()
