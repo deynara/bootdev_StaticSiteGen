@@ -1,31 +1,24 @@
-from textnode import TextNode, TextType
+from textnode import TextNode, TextType, textnode_to_htmlnode
 from htmlnode import *
+from markdown import *
+from debughelper import *
 
 def main():
     print("Starting main.py")
-    test = HTMLNode(
-            "a",
-            "It's a link",
-            None,
-            {
-               "href": "https://www.dummyurl.com",
-                "target": "_blank",
-            })
-    
-    test_method = test.props_to_html()
-    leaf = LeafNode("p", "This is a paragraph of text.")
-    parent = ParentNode(
-    "p",
-    [
-        LeafNode("b", "Bold text"),
-        LeafNode(None, "Normal text"),
-        LeafNode("i", "italic text"),
-        LeafNode(None, "Normal text"),
-    ],
-    )
+    md = """
+This is **bolded** paragraph
 
-    print (parent)
-    print(parent.to_html())
+This is another paragraph with _italic_ text and `code` here
+This is the same paragraph on a new line
 
+
+
+
+- This is a list
+- with items
+"""
+    blocks = markdown_to_blocks(md)
+    debug_pretty_print_list(blocks, "Blocks")
+    #print(md)
 if __name__ == "__main__":
     main()
